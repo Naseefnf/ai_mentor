@@ -1,7 +1,7 @@
 from fastapi import FastAPI
+from app.routers.health import router
+
 
 app = FastAPI()
 
-@app.get("/")
-def message():
-    return {"message": "AI Mentor backend is running"}
+app.include_router(router)
