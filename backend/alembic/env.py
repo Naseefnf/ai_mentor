@@ -6,6 +6,7 @@ from sqlalchemy import pool
 from alembic import context
 from app.core.database import Base
 from app.models.user import User
+from app.models.onboarding import OnboardingProfile
 
 import os
 from dotenv import load_dotenv
