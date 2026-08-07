@@ -5,7 +5,7 @@ from app.core.database import get_db
 from app.core.security import get_current_user
 from app.models.user import User
 from app.models.onboarding import OnboardingProfile
-from app.services.prompt_engine import generate_system_prompt
+from app.services.prompt_engine import get_cached_or_generate_prompt
 
 router = APIRouter(prefix="/prompt", tags=["prompt"])
 
@@ -21,5 +21,5 @@ def get_my_prompt(
     if profile is None:
         raise HTTPException(status_code=404, detail="Onboarding profile not found. Please complete onboarding first.")
 
-    system_prompt = generate_system_prompt(profile)
+    system_prompt = get_cached_or_generate_prompt(current_user.id, profile)
     return {"system_prompt": system_prompt}
